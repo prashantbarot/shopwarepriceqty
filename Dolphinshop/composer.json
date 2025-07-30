@@ -1,0 +1,27 @@
+{
+    "name": "custompricestock/dolphinshop",
+    "description": "custompricestock/dolphinshop",
+    "type": "shopware-platform-plugin",
+    "version": "1.0.0",
+    "license": "MIT",
+    "require": {
+        "shopware/core": "~6.6.0"
+    },
+    "extra": {
+        "shopware-plugin-class": "Custompricestock\\Dolphinshop",
+        "label": {
+            "de-DE": "Skeleton plugin",
+            "en-GB": "Skeleton plugin"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Custompricestock\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Custompricestock\\Tests\\": "tests/"
+        }
+    }
+}

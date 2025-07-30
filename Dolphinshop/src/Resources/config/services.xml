@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="Custompricestock\ScheduledTask\ExampleTask">
+            <tag name="shopware.scheduled.task"/>
+        </service>
+
+        <service id="Custompricestock\Storefront\Controller\ExampleController" public="true">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="Custompricestock\Core\Content\Custom_prices\Custom_pricesDefinition">
+            <tag name="shopware.entity.definition" entity="custom_prices" />
+        </service>
+
+		<service id="Custompricestock\Core\Content\Warehouse_stock\Warehouse_stockDefinition">
+            <tag name="shopware.entity.definition" entity="warehouse_stock" />
+        </service>
+		
+		<service id="Custompricestock\Service\CustomProductPriceCalculator" decorates="Shopware\Core\Content\Product\SalesChannel\Price\ProductPriceCalculator">
+            <argument type="service" id="Custompricestock\Service\CustomProductPriceCalculator.inner" />
+        </service>
+		
+		<service id="Custompricestock\Service\CheckoutControllerDecorator" decorates="Shopware\Storefront\Controller\CheckoutController">
+			<call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <argument type="service" id="Custompricestock\Service\CheckoutControllerDecorator.inner" />
+			<argument type="service" id="Shopware\Core\Checkout\Cart\SalesChannel\CartService" />
+			<argument type="service" id="Shopware\Storefront\Page\Checkout\Confirm\CheckoutConfirmPageLoader" />					
+        </service>
+		
+    </services>
+</container>
