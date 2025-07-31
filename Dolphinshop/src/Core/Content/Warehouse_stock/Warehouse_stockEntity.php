@@ -40,7 +40,7 @@ class Warehouse_stockEntity extends Entity
         return $this->quantity;
     }
 
-    public function getQuantity(?Int $quantity): void
+    public function setQuantity(?Int $quantity): void
     {
         $this->quantity = $quantity;
     }

@@ -9,6 +9,7 @@ use Shopware\Core\Framework\DataAbstractionLayer\Field\Flag\PrimaryKey;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\Flag\Required;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\IdField;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\StringField;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\FloatField;
 
 class Custom_pricesDefinition extends EntityDefinition
 {
@@ -34,7 +35,7 @@ class Custom_pricesDefinition extends EntityDefinition
         return new FieldCollection([
             (new IdField('id', 'id'))->addFlags(new Required(), new PrimaryKey()),
             (new StringField('sku', 'sku')),
-            (new StringField('customer_id', 'customer_id')),
+            (new IdField('customer_id', 'customer_id')),
             (new FloatField('price', 'price'))
         ]);
     }
